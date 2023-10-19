@@ -1,15 +1,10 @@
-import sys
-from typing import Tuple
-import math
-from solvers import uninformed_solver, greedy_bfs
-
-
 class Node():
-    def __init__(self, state, parent, action, priority = None):
+    def __init__(self, state, parent, action, h_cost = None, g_cost = 0):
         self.state = state
         self.parent = parent
         self.action = action
-        self.priority = priority
+        self.h_cost = h_cost
+        self.g_cost = g_cost
 
 
 class StackFrontier():
@@ -44,22 +39,17 @@ class QueueFrontier(StackFrontier):
             return node
 
 
-class PriorityFrontier(StackFrontier):
-    def contains_state(self, state):
-        pass
-
-    def remove(self):
+class CostFrontier(StackFrontier):
+    def remove(self, sort_function):
         if self.empty():
             raise Exception("empty frontier")
         else:
-            self.frontier.sort(key=lambda x: x.priority)
+            self.frontier.sort(key=sort_function)
             node = self.frontier.pop(0)
             return node
 
 
-
 class Maze():
-
     def __init__(self, filename):
 
         # Read file and set height and width of maze
@@ -98,6 +88,7 @@ class Maze():
             self.walls.append(row)
 
         self.solution = None
+        self.explored = None
         self.num_explored = 0
 
 
