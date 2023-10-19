@@ -37,7 +37,7 @@ def main():
     print("States Explored:", m.num_explored)
     print("Solution:")
     m.print()
-    m.output_image("maze.png", show_explored=True)
+    m.output_image("solved_maze.png", show_explored=True)
 
 if __name__ == "__main__":
     main()
