@@ -45,7 +45,8 @@ class CostFrontier(StackFrontier):
             raise Exception("empty frontier")
         else:
             self.frontier.sort(key=sort_function)
-            node = self.frontier.pop(0)
+            node = self.frontier[0]
+            self.frontier = self.frontier[1:]
             return node
 
 

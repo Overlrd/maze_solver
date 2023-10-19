@@ -88,7 +88,6 @@ def informed_search(Maze, Node, Frontier, frontier_sort_key):
 
         # pick a node from the frontier based on the 'frontier_sort_key' function
         node = frontier.remove(frontier_sort_key)
-        print(f"Picked node {node.g_cost=} {node.h_cost=} : {node.g_cost + node.h_cost} ")
         num_explored +=1
 
         # check if the current node is the goal state
@@ -104,7 +103,7 @@ def informed_search(Maze, Node, Frontier, frontier_sort_key):
         # explore the neighbors of the current node for valid nodes to explore next
         for action, state in Maze.neighbors(node.state):
             # make sure the state is not already in the explored set
-            if state not in explored:
+            if not frontier.contains_state(state) and state not in explored:
                 # compute the h_cost of the current state using manhattan distance 
                 h_cost = manhattan_distance(state, Maze.goal)
                 # generate a child node and push it into the frontier
