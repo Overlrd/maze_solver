@@ -8,12 +8,11 @@ ALGORITHMS = {
     "bfs": (uninformed_search, QueueFrontier),
     "gbfs": (informed_search, CostFrontier, lambda x: x.h_cost),
     "a_star": (informed_search, CostFrontier, lambda x: x.h_cost + x.g_cost),
-    "a*": (informed_search, CostFrontier, lambda x: x.h_cost + x.g_cost)
 }
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument("algorithm", help="[dfs, bfs, gbfs, [a_star, a*]]")
+    parser.add_argument("algorithm", help="[dfs, bfs, gbfs, a_star ]")
     parser.add_argument("maze_file", help="txt file of the maze including a start point A and target B",
                         default="maze.txt")
     args = parser.parse_args()
@@ -23,7 +22,7 @@ def main():
     algorithm, maze_file = parse_arguments()
 
     if algorithm not in ALGORITHMS:
-        print("Invalid algorithm. Please choose from: dfs, bfs, gbfs, [a_star, a*]")
+        print("Invalid algorithm. Please choose from: dfs, bfs, gbfs, a_star")
         return
 
     solver, *algorithm_args = ALGORITHMS[algorithm]

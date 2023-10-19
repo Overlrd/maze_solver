@@ -76,7 +76,7 @@ def informed_search(Maze, Node, Frontier, frontier_sort_key):
     """
     # initialize a frontier containing the starting node 
     num_explored = 0
-    start = Node(state=Maze.start, parent=None, action=Node, h_cost= -math.inf, g_cost = 0)
+    start = Node(state=Maze.start, parent=None, action=Node, h_cost= manhattan_distance(Maze.start, Maze.goal), g_cost= 0)
     frontier = Frontier()
     frontier.add(start)
 
@@ -88,6 +88,7 @@ def informed_search(Maze, Node, Frontier, frontier_sort_key):
 
         # pick a node from the frontier based on the 'frontier_sort_key' function
         node = frontier.remove(frontier_sort_key)
+        print(f"Picked node {node.g_cost=} {node.h_cost=} : {node.g_cost + node.h_cost} ")
         num_explored +=1
 
         # check if the current node is the goal state
