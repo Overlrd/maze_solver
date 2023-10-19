@@ -11,7 +11,7 @@ A simple Python program implementing DFS, BFS, and GBFS search algorithms for so
 
 
 ## Greedy Best-First Search (GDFS)
-![alt text](https://github.com/overlrd/maze_solver/blob/main/gdfs.png?raw=true)
+![alt text](https://github.com/overlrd/maze_solver/blob/main/gbfs.png?raw=true)
 
 
 ## A*
